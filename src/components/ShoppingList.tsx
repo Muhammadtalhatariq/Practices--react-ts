@@ -23,10 +23,13 @@ const ShoppingList: React.FC<ShoppingListProps> = memo(({ cart, total }) => {
       cart.map((item) => (
         <li
           key={`${item.product.id}-${item.quantity}`}
-          className="py-2 border-b border-gray-200 bg-green-200 flex items-center justify-between px-4"
+          className="py-2 border-b border-gray-200 bg-green-100 flex items-center justify-between px-4"
         >
           <div>
-            Title: {item.product.title} - Quantity {item.quantity}
+            <span className="text-lg font-semibold ">Title : </span>{" "}
+            {item.product.title} -{" "}
+            <span className="text-md font-semibold">Quantity : </span>
+            {item.quantity}
           </div>
           <div className="font-semibold">
             PKR : {Math.floor(item.product.price * item.quantity)}
