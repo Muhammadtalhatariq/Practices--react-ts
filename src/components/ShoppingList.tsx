@@ -19,24 +19,23 @@ interface ShoppingListProps {
 const ShoppingList: React.FC<ShoppingListProps> = memo(({ cart, total }) => {
   console.log("shopping cart render ...");
 
-  // const cartItems = useMemo(
-  //   () =>
-  //     cart.map((item) => (
-  //       <li
-  //         key={`${item.product.id}-${item.quantity}`}
-  //         className="py-2 border-b border-gray-200 bg-green-200 h-32 flex items-center justify-between px-4"
-  //       >
-  //         <div>
-  //           {item.product.title} - PKR {Math.floor(item.product.price)} ×{" "}
-  //           {item.quantity}
-  //         </div>
-  //         <div className="font-semibold">
-  //           PKR {Math.floor(item.product.price * item.quantity)}
-  //         </div>
-  //       </li>
-  //     )),
-  //   [cart]
-  // );
+  const cartItems = useMemo(
+    () =>
+      cart.map((item) => (
+        <li
+          key={`${item.product.id}-${item.quantity}`}
+          className="py-2 border-b border-gray-200 bg-green-200 flex items-center justify-between px-4"
+        >
+          <div>
+            Title: {item.product.title} - Quantity {item.quantity}
+          </div>
+          <div className="font-semibold">
+            PKR {Math.floor(item.product.price * item.quantity)}
+          </div>
+        </li>
+      )),
+    [cart]
+  );
 
   return (
     <div className="border-t flex items-center justify-center flex-col border-gray-200 pt-5 w-full max-w-4xl mx-auto">
@@ -46,7 +45,7 @@ const ShoppingList: React.FC<ShoppingListProps> = memo(({ cart, total }) => {
       </h2>
       {cart.length > 0 ? (
         <div className="w-full">
-          {/* <ul className="list-none p-0">{cartItems}</ul> */}
+          <ul className="list-none p-0">{cartItems}</ul>
           <div className="flex justify-between items-center p-4 bg-blue-100 mt-4 rounded">
             <span className="text-lg font-bold">Total:</span>
             <span className="text-lg font-bold">PKR {Math.floor(total)}</span>
