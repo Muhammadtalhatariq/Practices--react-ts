@@ -18,7 +18,6 @@ interface ShoppingListProps {
 
 const ShoppingList: React.FC<ShoppingListProps> = memo(({ cart, total }) => {
   console.log("shopping cart render ...");
-
   const cartItems = useMemo(
     () =>
       cart.map((item) => (
@@ -30,7 +29,7 @@ const ShoppingList: React.FC<ShoppingListProps> = memo(({ cart, total }) => {
             Title: {item.product.title} - Quantity {item.quantity}
           </div>
           <div className="font-semibold">
-            PKR {Math.floor(item.product.price * item.quantity)}
+            PKR : {Math.floor(item.product.price * item.quantity)}
           </div>
         </li>
       )),
@@ -40,7 +39,7 @@ const ShoppingList: React.FC<ShoppingListProps> = memo(({ cart, total }) => {
   return (
     <div className="border-t flex items-center justify-center flex-col border-gray-200 pt-5 w-full max-w-4xl mx-auto">
       <h2 className="text-xl font-semibold mb-4">
-        Shopping Cart ({cart.reduce((sum, item) => sum + item.quantity, 0)}{" "}
+        Shopping Cart ({cart.reduce((sum, item) => sum + item.quantity, 0)}
         items)
       </h2>
       {cart.length > 0 ? (

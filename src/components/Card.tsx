@@ -36,8 +36,7 @@ const Card: React.FC = () => {
 
   // Calculate total price
   const cartTotal = useMemo(() => {
-    console.log("calculation .....")
-    
+    console.log("calculation .....");
     return cart.reduce((total, item) => {
       return total + item.product.price * item.quantity;
     }, 0);
