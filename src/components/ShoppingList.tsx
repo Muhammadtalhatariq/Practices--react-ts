@@ -46,7 +46,7 @@ const ShoppingList: React.FC<ShoppingListProps> = memo(({ cart, total }) => {
         items)
       </h2>
       {cart.length > 0 ? (
-        <div className="w-full">
+        <div className="w-full my-4">
           <ul className="list-none p-0">{cartItems}</ul>
           <div className="flex justify-between items-center p-4 bg-blue-100 mt-4 rounded">
             <span className="text-lg font-bold">Total:</span>
@@ -54,7 +54,7 @@ const ShoppingList: React.FC<ShoppingListProps> = memo(({ cart, total }) => {
           </div>
         </div>
       ) : (
-        <p className="text-gray-500">Your cart is empty</p>
+        <p className="text-gray-500 my-4">Your cart is empty</p>
       )}
     </div>
   );

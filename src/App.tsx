@@ -1,10 +1,10 @@
 import React from "react";
-import Closures from "./Pages/Closures";
+import Products from "./Pages/Products";
 
 const App: React.FC = () => {
   return (
     <>
-      <Closures />
+      <Products />
     </>
   );
 };

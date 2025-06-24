@@ -82,7 +82,7 @@ const Card: React.FC = () => {
       products.map((product) => (
         <div
           key={product.id}
-          className="border border-gray-300 rounded-lg p-4 w-72 shadow-sm"
+          className="border border-gray-300 rounded-md p-4 w-80 md:w-72 shadow-sm"
         >
           <img
             src={product.image}
