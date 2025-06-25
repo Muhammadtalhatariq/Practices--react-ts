@@ -23,16 +23,20 @@ const ShoppingList: React.FC<ShoppingListProps> = memo(({ cart, total }) => {
       cart.map((item) => (
         <li
           key={`${item.product.id}-${item.quantity}`}
-          className="py-2 border-b border-gray-200 bg-green-100 flex items-center justify-between px-4"
+          className="py-2 border-b border-gray-200 bg-neutral-50 flex items-center px-4 mx-2 md:mx-0"
         >
-          <div>
-            <span className="text-lg font-semibold ">Title : </span>{" "}
-            {item.product.title} -{" "}
-            <span className="text-md font-semibold">Quantity : </span>
+          <div className="flex flex-col md:items-center justify-between md:flex-row gap-2">
+            <div className="flex items-center gap-2 ">
+              <span className="text-lg font-semibold ">Title : </span>
+              {item.product.title.split(" ").slice(0,4).join(" ")}
+            </div>
+          <div className="flex items-center gap-2 ">
+              <span className="text-md font-semibold">Quantity : </span>
             {item.quantity}
           </div>
-          <div className="font-semibold">
-            PKR : {Math.floor(item.product.price * item.quantity)}
+            <div className="font-semibold flex items-center gap-2">
+             <span> PKR :</span> <span>{Math.floor(item.product.price * item.quantity)}</span>
+            </div>
           </div>
         </li>
       )),
@@ -40,15 +44,15 @@ const ShoppingList: React.FC<ShoppingListProps> = memo(({ cart, total }) => {
   );
 
   return (
-    <div className="border-t flex items-center justify-center flex-col border-gray-200 pt-5 w-full max-w-4xl mx-auto">
+    <div className=" flex items-center justify-center flex-col pt-5 w-full max-w-4xl mx-auto">
       <h2 className="text-xl font-semibold mb-4">
         Shopping Cart ({cart.reduce((sum, item) => sum + item.quantity, 0)}
         items)
       </h2>
       {cart.length > 0 ? (
         <div className="w-full my-4">
-          <ul className="list-none p-0">{cartItems}</ul>
-          <div className="flex justify-between items-center p-4 bg-blue-100 mt-4 rounded">
+          <ul className="list-none p-0 ">{cartItems}</ul>
+          <div className="flex justify-between items-center p-4 bg-neutral-200 mt-4 rounded mx-2 md:mx-0">
             <span className="text-lg font-bold">Total:</span>
             <span className="text-lg font-bold">PKR {Math.floor(total)}</span>
           </div>

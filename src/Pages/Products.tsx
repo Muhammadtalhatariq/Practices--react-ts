@@ -6,9 +6,8 @@ import Footer from "../components/Footer";
 const ProductCard: React.FC = () => {
   return (
     <div className=" font-sans">
-      <Header />
+      <Header  />
       {/* {console.log("parent render...")} */}
-      <h1 className="text-2xl font-bold mb-6 text-center">Product Shop</h1>
       <Card />
       <Footer />
     </div>

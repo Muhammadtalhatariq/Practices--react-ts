@@ -23,7 +23,7 @@ const Card: React.FC = () => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://fakestoreapi.com/products?limit=7"
+          "https://fakestoreapi.com/products?limit=6"
         );
         const data = await response.json();
         setProducts(data);
@@ -60,14 +60,19 @@ const Card: React.FC = () => {
               return [...prevCart, { product, quantity: 1 }];
             }
           } else {
-            return prevCart.filter((item) => item.product.id !== productId);
+            return prevCart
+              .map((item) =>
+                item.product.id === productId
+                  ? { ...item, quantity: item.quantity - 1 }
+                  : item
+              )
+              .filter((item) => item.quantity > 0);
           }
         });
       };
     },
     [products]
   );
-
   const handleAddToCart = useMemo(
     () => createCartHandler("add"),
     [createCartHandler]
@@ -82,7 +87,7 @@ const Card: React.FC = () => {
       products.map((product) => (
         <div
           key={product.id}
-          className="border border-gray-300 rounded-md p-4 w-80 md:w-72 shadow-sm"
+          className="border border-gray-300 rounded-md p-4 w-[360px] md:w-72 shadow-sm md:my-4 my-2"
         >
           <img
             src={product.image}
@@ -95,7 +100,7 @@ const Card: React.FC = () => {
           <div className="flex gap-2 mt-3">
             <button
               onClick={() => handleAddToCart(product.id)}
-              className="px-3 py-2 bg-blue-100 rounded hover:bg-blue-200"
+              className="px-3 py-2 bg-blue-100 rounded hover:bg-blue-200 cursor-pointer"
             >
               Add to Cart
             </button>
@@ -114,7 +119,9 @@ const Card: React.FC = () => {
   return (
     <div>
       {console.log("card render ...")}
-      <div className="flex flex-wrap justify-center gap-4">{productCards}</div>
+      <div className="flex flex-wrap justify-center md:gap-4 pt-20">
+        {productCards}
+      </div>
       <ShoppingList cart={cart} total={cartTotal} />
     </div>
   );
